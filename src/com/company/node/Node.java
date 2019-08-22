@@ -6,6 +6,7 @@ public class Node {
 
     private ArrayList<Node> children;
     private String name;
+    private Node parent;
 
     public String getName() {
         return name;
@@ -23,6 +24,7 @@ public class Node {
 
     public Node addChild(Node node) {
         children.add(node);
+        node.parent = this;
         return node;
     }
 
@@ -37,6 +39,10 @@ public class Node {
     public int treeDegree(){
         // TODO calcular o grau de todos os nós filhos
         return nodeDegree();
+    }
+
+    public boolean isSibling(Node other){
+        return this.parent == other.parent;
     }
 
 }
