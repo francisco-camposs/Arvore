@@ -8,6 +8,10 @@ public class Node {
     private String name;
     private Node parent;
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
@@ -42,6 +46,9 @@ public class Node {
     }
 
     public boolean isSibling(Node other){
+        if (other == null){
+            return false;
+        }
         return this.parent == other.parent;
     }
 
