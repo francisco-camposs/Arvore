@@ -12,7 +12,7 @@ public class Main {
         root.addChild(new Node("Filho 2"));
         root.addChild(new Node("Filho 3"));
         child.addChild(new Node("Neto 1"));
-        
+        System.out.println("Root degree: "+root.treeDegree());
         root.percorrer();
     }
 }

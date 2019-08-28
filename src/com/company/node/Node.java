@@ -44,12 +44,18 @@ public class Node {
 
     public int treeDegree(){
         // TODO calcular o grau de todos os nós filhos
-        Integer num = 0;
-        return threeDegree(num,this);
+        Integer num = nodeDegree();
+        threeDegree(num,this);
+        return num;
     }
     
-    private int threeDegree(Integer num, Node node){
-        return num;
+    private void threeDegree(Integer num, Node node){
+        for(var value: node.children){
+            if (value.nodeDegree() > num){
+                num = value.nodeDegree();
+            }
+            run(value);
+        }
     }
     
     public void percorrer(){
