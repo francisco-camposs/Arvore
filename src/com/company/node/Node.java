@@ -15,6 +15,8 @@ public class Node {
         this.children = new ArrayList<>();
     }
     
+
+    
     public void setName(String name) {
         this.name = name;
     }
