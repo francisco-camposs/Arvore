@@ -1,7 +1,8 @@
-package com.company.node;
+package com.company.test.node;
 
+
+import com.company.node.Node;
 import java.util.Random;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class NodeTest {
