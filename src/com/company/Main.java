@@ -16,5 +16,6 @@ public class Main {
         child.addChild(new Node("Neto 1"));
         root.visit(new NodeVisitorPrint());
         System.out.println(root.treeDegree());
+        System.out.println(child);
     }
 }
