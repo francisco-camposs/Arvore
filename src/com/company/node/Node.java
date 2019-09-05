@@ -1,5 +1,7 @@
 package com.company.node;
 
+import com.company.visitor.NodeVisitor;
+
 import java.util.ArrayList;
 
 public class Node {
@@ -14,8 +16,6 @@ public class Node {
         this.name = name;
         this.children = new ArrayList<>();
     }
-    
-
     
     public void setName(String name) {
         this.name = name;
@@ -36,40 +36,36 @@ public class Node {
         return node;
     }
 
+    public Integer treeDegree(){
+        Integer Int = this.nodeDegree();
+        for (Node node: children){
+            node.treeDegree(Int);
+        }
+        return Int;
+    }
+
+    private void treeDegree(Integer Int){
+        if (Int < this.nodeDegree()){
+            Int = nodeDegree();
+        }
+        for (Node node: children){
+            node.treeDegree(Int);
+        }
+    }
+
     public boolean isLeaf(){
         return children.isEmpty();
     }
 
-    public int nodeDegree(){
-        return children.size();
+    public void visit(NodeVisitor visitor){
+            visitor.visit(this);
+            for (Node node: children){
+            node.visit(visitor);
+        }
     }
 
-    public int treeDegree(){
-        // TODO calcular o grau de todos os nós filhos
-        Integer num = nodeDegree();
-        threeDegree(num,this);
-        return num;
-    }
-    
-    private void threeDegree(Integer num, Node node){
-        for(var value: node.children){
-            if (value.nodeDegree() > num){
-                num = value.nodeDegree();
-            }
-            run(value);
-        }
-    }
-    
-    public void percorrer(){
-        System.out.println(this.name);
-        run(this);
-    }
-    
-    private void run(Node node) {
-        for(var value: node.children){
-            System.out.println(value.name);
-            run(value);
-        }
+    public int nodeDegree(){
+        return children.size();
     }
 
     public boolean isSibling(Node other){

@@ -2,7 +2,10 @@ package com.company.test.node;
 
 
 import com.company.node.Node;
+import org.junit.jupiter.api.Test;
+
 import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class NodeTest {
@@ -63,13 +66,12 @@ class NodeTest {
 	
 	@org.junit.jupiter.api.Test
 	void treeDegree() {
-	}
-	
-	@org.junit.jupiter.api.Test
-	void percorrer() {
-	}
-	
-	@org.junit.jupiter.api.Test
-	void isSibling() {
+			Random rand = new Random();
+
+			Integer Int = Math.abs(rand.nextInt()) % 100;
+			Node pai = new Node("Papai");
+			Node filho1 = new Node("Filho 1");
+			Node filho2 = new Node("Filho 2");
+			
 	}
 }
