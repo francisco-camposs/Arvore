@@ -2,7 +2,6 @@ package com.company.testNode;
 
 
 import com.company.node.Node;
-import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
@@ -66,45 +65,35 @@ class NodeTest {
 	
 	@org.junit.jupiter.api.Test
 	void treeDegree() {
-		Random rand = new Random();
-
-		Integer Int = Math.abs(rand.nextInt()) % 100;
-
-		Integer maior = Int.intValue() + 2;
-
-		Integer aux;
-		Node pai = new Node("Papai");
-
-		Node filho1 = new Node("Filho 1");
-		pai.addChild(filho1);
-
-		Node filho2 = new Node("Filho 2");
-		pai.addChild(filho2);
-
-
-		for (Integer value = 0; value.intValue() < Int.intValue();  value++){
-			aux = rand.nextInt();
-			pai.addChild(new Node(aux.toString()));
+		Random aux = new Random();
+		
+		Node child = new Node("Filho");
+		
+		int count = Math.abs(aux.nextInt()) % 100;
+		
+		for (int i = 0; i < count; i++){
+			child.addChild(new Node("" + aux.nextInt()));
 		}
-		Int = Math.abs(rand.nextInt()) % 100;
-		if(maior.compareTo(Int) < 0){
-			maior = Int;
+		
+		count = Math.abs(aux.nextInt()) % 100;
+		for (int i = 0; i < count; i++){
+			node.addChild(new Node("" + aux.nextInt()));
 		}
-		for (Integer value = 0; value.intValue() < Int.intValue();  value++){
-			aux = rand.nextInt();
-			filho1.addChild(new Node(aux.toString()));
+		node.addChild(child);
+		
+		int maior = 0;
+		
+		System.out.println("Nó do pai: "+node.nodeDegree() + "\n Nó do filho: "+child.nodeDegree());
+		System.out.println("Maior Nó: "+node.treeDegree());
+		
+		if (node.nodeDegree() >= child.nodeDegree()){
+			maior = node.nodeDegree();
 		}
-
-		Int = Math.abs(rand.nextInt()) % 100;
-		if(maior.compareTo(Int) < 0){
-			maior = Int.intValue();
+		else {
+			maior = child.nodeDegree();
 		}
-		for (Integer value = 0; value.intValue() < Int.intValue();  value++){
-			aux = rand.nextInt();
-			filho2.addChild(new Node(aux.toString()));
-		}
-
-		assertEquals(maior, pai.treeDegree());
-
+		
+		assertEquals(maior, node.treeDegree());
+		
 	}
 }

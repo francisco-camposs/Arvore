@@ -9,6 +9,7 @@ public class Node {
     private ArrayList<Node> children;
     private String name;
     private Node parent;
+    private Integer grau;
 
 
 
@@ -17,7 +18,8 @@ public class Node {
         this.children = new ArrayList<>();
     }
     
-    public void setName(String name) {
+	
+	public void setName(String name) {
         this.name = name;
     }
     
@@ -37,16 +39,19 @@ public class Node {
     }
 
     public Integer treeDegree(){
-        Integer Int = this.nodeDegree();
+        grau = this.nodeDegree();
         for (Node node: children){
-            node.treeDegree(Int);
+            node.treeDegree(grau);
+            System.out.println("Grau: "+ grau);
         }
-        return Int;
+        return grau;
     }
 
     private void treeDegree(Integer Int){
-        if (Int < this.nodeDegree()){
-            Int = nodeDegree();
+        if (Int.intValue() <= this.nodeDegree()){
+            System.out.println("Int = " + Int);
+            Int = this.nodeDegree();
+            System.out.println("Int = " + Int);
         }
         for (Node node: children){
             node.treeDegree(Int);
