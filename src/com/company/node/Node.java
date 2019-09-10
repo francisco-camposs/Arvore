@@ -1,7 +1,6 @@
 package com.company.node;
 
 import com.company.visitor.NodeVisitor;
-
 import java.util.ArrayList;
 
 public class Node {
@@ -9,7 +8,6 @@ public class Node {
     private ArrayList<Node> children;
     private String name;
     private Node parent;
-    private Integer grau;
 
 
 
@@ -39,22 +37,24 @@ public class Node {
     }
 
     public Integer treeDegree(){
-        grau = this.nodeDegree();
+        System.out.println("Chamou de novo.");
+        int[] grau = new int[1];
+        grau[0] = nodeDegree();
         for (Node node: children){
             node.treeDegree(grau);
-            System.out.println("Grau: "+ grau);
+            System.out.println("Grau: "+ grau[0]);
         }
-        return grau;
+        return grau[0];
     }
 
-    private void treeDegree(Integer Int){
-        if (Int.intValue() <= this.nodeDegree()){
-            System.out.println("Int = " + Int);
-            Int = this.nodeDegree();
-            System.out.println("Int = " + Int);
+    private void treeDegree(int[] grau){
+        if (grau[0] <= this.nodeDegree()){
+            System.out.println("Int = " + grau[0]);
+            grau[0] = this.nodeDegree();
+            System.out.println("Int = " + grau[0]);
         }
         for (Node node: children){
-            node.treeDegree(Int);
+            node.treeDegree(grau);
         }
     }
 

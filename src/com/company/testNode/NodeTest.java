@@ -1,17 +1,21 @@
 package com.company.testNode;
 
-
 import com.company.node.Node;
 
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NodeTest {
 	private Node node;
+	private Random rand;
+
 	@org.junit.jupiter.api.BeforeEach
 	void setUp() {
 		node = new Node("Novo");
+		rand = new Random();
 	}
 	
 	@org.junit.jupiter.api.Test
@@ -27,7 +31,6 @@ class NodeTest {
 	
 	@org.junit.jupiter.api.Test
 	void TestIfTheMethodAddChildIsFunctioning() {
-		Random rand = new Random();
 		
 		Integer ints = Math.abs(rand.nextInt() % 100);
 		
@@ -81,19 +84,11 @@ class NodeTest {
 		}
 		node.addChild(child);
 		
-		int maior = 0;
+		int maior = Math.max(node.nodeDegree(), child.nodeDegree());
 		
-		System.out.println("Nó do pai: "+node.nodeDegree() + "\n Nó do filho: "+child.nodeDegree());
-		System.out.println("Maior Nó: "+node.treeDegree());
-		
-		if (node.nodeDegree() >= child.nodeDegree()){
-			maior = node.nodeDegree();
-		}
-		else {
-			maior = child.nodeDegree();
-		}
-		
+//		System.out.println("Nó do pai: "+node.nodeDegree() + "\n Nó do filho: "+child.nodeDegree());
+//		System.out.println("Maior Nó: "+node.treeDegree());
+
 		assertEquals(maior, node.treeDegree());
-		
 	}
 }
